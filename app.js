@@ -1,10 +1,27 @@
 const btnUpdate = document.querySelector('.btn-main');
-const headline = document.getElementById('headline');
-const items = document.querySelectorAll('li');
-const highlights = document.querySelectorAll('.highlight');
+const btnToggle = document.querySelector('.btn-toggle');
+
 
 
 btnUpdate.addEventListener('click', () => {
-  headline.style.border = 'solid 2px red';
-  headline.style.fontSize = '60px';													 
+  const headline = document.getElementById('headline');
+  const input = document.querySelector('.input-main');
+
+  headline.className = 'grow';
+  headline.textContent = input.value;
+  // after setting the new heading we clean up the input field
+  input.value = '';
 });
+
+btnToggle.addEventListener('click', () => {
+  //Select the div to hide
+  const listContainer = document.querySelector('.list-container');
+  if (listContainer.style.display === 'none') {
+    btnToggle.textContent = 'Hide List';
+    listContainer.style.display = 'block';
+  } else {
+    btnToggle.textContent = 'Show List';
+    listContainer.style.display = 'none';
+  }
+});
+
