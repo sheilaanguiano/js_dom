@@ -1,16 +1,20 @@
-const btnUpdate = document.querySelector('.btn-main');
+const btnCreate = document.querySelector('.btn-main');
 const btnToggle = document.querySelector('.btn-toggle');
+const btnRemove = document.querySelector('.btn-remove');
+const listItems = document.getElementsByTagName('li');
 
 
 
-btnUpdate.addEventListener('click', () => {
-  const headline = document.getElementById('headline');
+btnCreate.addEventListener('click', () => {
   const input = document.querySelector('.input-main');
-
-  headline.className = 'grow';
-  headline.textContent = input.value;
-  // after setting the new heading we clean up the input field
+  const list = document.querySelector('ul');
+  
+  list.insertAdjacentHTML(
+    'afterbegin',
+    `<li>${input.value}</li>`
+  );
   input.value = '';
+  
 });
 
 btnToggle.addEventListener('click', () => {
@@ -24,4 +28,16 @@ btnToggle.addEventListener('click', () => {
     listContainer.style.display = 'none';
   }
 });
+
+btnRemove.addEventListener('click', () =>  {
+  const lastItem = document.querySelector('li:last-child');
+
+  lastItem.remove();
+});
+
+for(let i = 0; i < listItems.length; i++){
+  listItems[i].addEventListener('mouseover', () => {
+    listItems[i].textContent = listItems[i].textContent.toUpperCase();
+  });
+}
 
